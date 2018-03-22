@@ -1,0 +1,2 @@
+module Rp::AppHelper
+end
