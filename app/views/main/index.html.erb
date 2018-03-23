@@ -1,0 +1,14 @@
+<main>
+<h1>Auths Demo Main View</h1>
+
+<% if @logined %>
+  <h3>あなたはログイン済みです</h3>
+  <p>操作を選択してください</p>
+  <p><%= link_to 'プロファイル情報を表示する', main_show_path %></p>
+  <p><%= link_to 'ログアウトする', main_logout_path %></p>
+<% else %>
+  <h3>ログインされていません</h3>
+  <p>以下のリンクよりサイトにログインしてください</p>
+  <%= link_to 'ログインする', main_login_path %>
+<% end %>
+</main>

@@ -1,0 +1,22 @@
+<main>
+<h1>Show Your Profile</h1>
+<div>
+  <h3>OAuth Provider: Twitter</h3>
+
+  <table>
+    <tr><th>Twitter id</th><td><%= @profile['id'] %></td></tr>
+    <tr><th>name</th><td><%= @profile['name'] %></td></tr>
+    <tr><th>screen name</th><td><%= @profile['screen_name'] %></td></tr>
+    <tr>
+      <th>photo</th>
+      <td><%= image_tag @profile['profile_image_url_https'], alt: 'photo', width: '80px', height: '80px' %></td>
+    </tr>
+    <tr><th>location</th><td><%= @profile['location'] %></td></tr>
+    <tr><th>description</th><td><%= @profile['description'] %></td></tr>
+  </table>
+</div>
+<p>
+[<%= link_to 'Main View に戻る', main_index_path %>]
+[<%= link_to 'ログアウトする', main_logout_path %>]
+</p>
+</main>
