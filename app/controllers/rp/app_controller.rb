@@ -11,6 +11,10 @@ module Rp
       @rp = Auths::Authorize.rp(provider)
     end
 
+    def authorization_state
+      "auths_demo__#{SecureRandom.urlsafe_base64(32)}"
+    end
+
     # Auth Error handler
     def handle_auth_error(err)
       logger.warn("AUTH ERROR: status: #{err.http_status}: #{err.message}")

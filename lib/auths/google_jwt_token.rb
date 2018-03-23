@@ -12,19 +12,19 @@ module Auths
 
     def validate_jwt(token)
       validator = GoogleIDToken::Validator.new
-      validator.check(token, conf['client_id'])
+      validator.check(token, gconf['client_id'])
     rescue GoogleIDToken::ValidationError => e
       raise Auths::Error::Unauthorized, "Invalid ID token: #{e}"
     end
 
     def validate_aud(payload)
       # aud must equal to client_id
-      raise 'Invalid client id' unless payload['aud'] == conf['client_id']
+      raise 'Invalid client id' unless payload['aud'] == gconf['client_id']
     end
 
     def validate_iss(payload)
       # iss must equal to issuer
-      raise 'Invalid issuer' unless payload['iss'] == conf['issuer']
+      raise 'Invalid issuer' unless payload['iss'] == gconf['issuer']
     end
 
     def validate_exp(payload)

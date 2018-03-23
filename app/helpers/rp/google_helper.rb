@@ -1,0 +1,2 @@
+module Rp::GoogleHelper
+end

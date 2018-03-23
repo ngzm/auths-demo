@@ -34,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'faraday'
 gem 'faraday_middleware'
 gem 'simple_oauth'
+gem 'google-id-token'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

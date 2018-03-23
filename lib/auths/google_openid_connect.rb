@@ -4,7 +4,7 @@ module Auths
     include GoogleJwtToken
 
     attr_accessor :state, :code
-    attr_reader :access_token, :id_token
+    attr_accessor :access_token, :id_token
     attr_reader :user_profile
 
     def authorization_endpoint_uri

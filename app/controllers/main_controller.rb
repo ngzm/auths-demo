@@ -2,14 +2,14 @@
 
 # Auths-demo app Main controller
 class MainController < ApplicationController
-  before_action :authenticate, except: %i[index login]
+  skip_before_action :authenticate, only: %i[index login]
 
   def index
     @logined = authenticated?
   end
 
   def show
-    redirect_to @token['redirect']
+    redirect_to @token_set['redirect']
   end
 
   def login; end
@@ -17,20 +17,5 @@ class MainController < ApplicationController
   def logout
     session.delete(:access_token_set)
     redirect_to main_index_path
-  end
-
-  private
-
-  def authenticate
-    @logined = authenticated?
-    return if @logined
-
-    redirect_to main_login_path
-  end
-
-  def authenticated?
-    @token = session[:access_token_set]
-    return false if @token.nil?
-    true
   end
 end
