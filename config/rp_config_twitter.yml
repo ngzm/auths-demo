@@ -1,0 +1,11 @@
+request_endpoint_host:  https://api.twitter.com
+request_endpoint_path:  /oauth/request_token
+auth_endpoint_host:     https://api.twitter.com
+auth_endpoint_path:     /oauth/authorize
+token_endpoint_host:    https://api.twitter.com
+token_endpoint_path:    /oauth/access_token
+user_endpoint_host:     https://api.twitter.com
+user_endpoint_path:     /1.1/users/show.json
+consumer_key:           --your-consumer_key--
+consumer_secret:        --your-consumer_secret--
+callback_url:           http://--your-callback_url--
