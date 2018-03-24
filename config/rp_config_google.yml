@@ -1,0 +1,11 @@
+issuer:                  https://accounts.google.com
+auth_endpoint_host:      https://accounts.google.com
+auth_endpoint_path:      /o/oauth2/v2/auth
+token_endpoint_host:     https://www.googleapis.com
+token_endpoint_path:     /oauth2/v4/token
+userinfo_endpoint_host:  https://www.googleapis.com
+userinfo_endpoint_path:  /oauth2/v3/userinfo
+grant_type:              authorization_code
+client_id:               --your-client-id--
+client_secret:           --your-client-secret--
+redirect_uri:            http://--your-redirect_uri--
