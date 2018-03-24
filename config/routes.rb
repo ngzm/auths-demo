@@ -8,6 +8,12 @@ Rails.application.routes.draw do
     get 'twitter/index'
     get 'twitter/create'
     get 'twitter/show'
+    get 'facebook/index'
+    get 'facebook/create'
+    get 'facebook/show'
+    get 'google/index'
+    get 'google/create'
+    get 'google/show'
   end
 
   root to: 'main#index'

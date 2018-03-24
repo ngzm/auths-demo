@@ -1,0 +1,2 @@
+module Rp::FacebookHelper
+end

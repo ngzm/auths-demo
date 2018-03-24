@@ -1,0 +1,24 @@
+<main>
+<h1>Show Your Profile</h1>
+<div>
+  <h3>Identity Provider: Google</h3>
+
+  <table>
+    <tr><th>Google id</th><td><%= @profile['sub'] %></td></tr>
+    <tr><th>name</th><td><%= @profile['name'] %></td></tr>
+    <tr><th>given name</th><td><%= @profile['given_name'] %></td></tr>
+    <tr><th>family name</th><td><%= @profile['family_name'] %></td></tr>
+    <tr>
+      <th>photo</th>
+      <td><%= image_tag @profile['picture'], alt: 'photo', width: '80px', height: '80px' %></td>
+    </tr>
+    <tr><th>email</th><td><%= @profile['email'] %></td></tr>
+    <tr><th>gender</th><td><%= @profile['gender'] %></td></tr>
+    <tr><th>locale</th><td><%= @profile['locale'] %></td></tr>
+  </table>
+</div>
+<p>
+[<%= link_to 'Main View に戻る', main_index_path %>]
+[<%= link_to 'ログアウトする', main_logout_path %>]
+</p>
+</main>

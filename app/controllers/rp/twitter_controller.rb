@@ -3,6 +3,7 @@
 module Rp
   # OAuth Client for Twitter
   class TwitterController < Rp::AppController
+    skip_before_action :authenticate, only: %i[index create]
     before_action :rp
 
     PROVIDER = 'twitter'
@@ -61,24 +62,18 @@ module Rp
     def load_request_token
       # You should load them from your database.
       # This is just a demo.
-      @token = session[:request_token_set]
-      raise 'Missing request_token_set' if @token.nil?
-      raise 'Missing request_token' if @token['token'].nil?
-      raise 'Missing request_token_secret' if @token['secret'].nil?
+      @token_set = session[:request_token_set]
+      raise 'Missing request_token_set' if @token_set.nil?
+      raise 'Missing request_token' if @token_set['token'].nil?
+      raise 'Missing request_token_secret' if @token_set['secret'].nil?
       session[:request_token_set] = nil
     end
 
     def initialize_rp_on_create
       @rp.oauth_token = params[:oauth_token]
       @rp.oauth_verifier = params[:oauth_verifier]
-      @rp.request_token = @token['token']
-      @rp.request_token_secret = @token['secret']
-
-      # TODO: debug
-      puts(`oauth_token = #{@rp.oauth_token}`)
-      puts(`oauth_verifier = #{@rp.oauth_verifier}`)
-      puts("request_token = #{@rp.request_token}")
-      puts("request_token_secret = #{@rp.request_token_secret}")
+      @rp.request_token = @token_set['token']
+      @rp.request_token_secret = @token_set['secret']
     end
 
     def store_access_token
@@ -88,29 +83,25 @@ module Rp
         'token'   => @rp.access_token,
         'secret'  => @rp.access_token_secret,
         'user_id' => @rp.user_id,
-        'redirect' => '/rp/twitter/show'
+        'redirect' => '/rp/twitter/show',
+        'provider' => PROVIDER
       }
     end
 
     def load_access_token
       # You should load them from your database.
       # This is just a demo.
-      @token = session[:access_token_set]
-      raise 'Missing access_token_set' if @token.nil?
-      raise 'Missing access_token' if @token['token'].nil?
-      raise 'Missing access_token_secret' if @token['secret'].nil?
-      raise 'Missing user_id' if @token['user_id'].nil?
+      @token_set = session[:access_token_set]
+      raise 'Missing access_token_set' if @token_set.nil?
+      raise 'Missing access_token' if @token_set['token'].nil?
+      raise 'Missing access_token_secret' if @token_set['secret'].nil?
+      raise 'Missing user_id' if @token_set['user_id'].nil?
     end
 
     def initialize_rp_on_show
-      @rp.access_token = @token['token']
-      @rp.access_token_secret = @token['secret']
-      @rp.user_id = @token['user_id']
-
-      # TODO: debug
-      puts("access_token = #{@rp.access_token}")
-      puts("access_token_secret = #{@rp.access_token_secret}")
-      puts("user_id = #{@rp.user_id}")
+      @rp.access_token = @token_set['token']
+      @rp.access_token_secret = @token_set['secret']
+      @rp.user_id = @token_set['user_id']
     end
   end
 end
