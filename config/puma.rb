@@ -15,6 +15,15 @@ port        ENV.fetch("PORT") { 3000 }
 #
 environment ENV.fetch("RAILS_ENV") { "development" }
 
+# Specified pidfile and state path
+my_pid_dir = File.expand_path('../tmp/pids', __dir__)
+pidfile "#{my_pid_dir}/authsdemo_puma.pid"
+state_path "#{my_pid_dir}/authsdemo_puma.state"
+
+# bind socket
+my_socket_dir = File.expand_path('../tmp/sockets', __dir__)
+bind "unix:///#{my_socket_dir}/authsdemo_puma.sock"
+
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
 # the concurrency of the application would be max `threads` * `workers`.
