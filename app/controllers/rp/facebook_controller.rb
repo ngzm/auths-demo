@@ -3,12 +3,13 @@
 module Rp
   # OAuth Client for Twitter
   class FacebookController < Rp::AppController
+    skip_before_action :authenticate, only: %i[index create]
     before_action :rp
 
     PROVIDER = 'facebook'
 
     def index
-      initialize_rp_for_index
+      initialize_rp_on_index
       store_state
 
       # STEP1. Request to authorization_endpoint
@@ -22,13 +23,23 @@ module Rp
       initialize_rp_on_create
 
       # STEP2. Exchange code to access_token
-      @provider.obtain_access_token
+      @rp.obtain_access_token
 
       store_access_token
       redirect_to main_index_path
     end
 
     def show
+      load_access_token
+      initialize_rp_on_show
+
+      # Validate access token
+      # And obtain user_id
+      @rp.debug_access_token
+
+      # STEP4. Obtaining user profile information
+      @rp.obtain_user_profile
+      @profile = @rp.user_profile
     end
 
     private
@@ -37,11 +48,8 @@ module Rp
       super PROVIDER
     end
 
-    def initialize_rp_for_index
-      @provider.state = gen_state
-
-      # TODO: debug
-      puts("state = #{@rp.state}")
+    def initialize_rp_on_index
+      @rp.state = authorization_state
     end
 
     def store_state
@@ -58,23 +66,19 @@ module Rp
     def load_state
       # You should load them from your database.
       # This is just a demo.
-      @state = session[:state_set]
-      raise 'Missing state_set' if @state.nil?
-      raise 'Missing state' if @state['state'].nil?
+      @state_set = session[:state_set]
+      raise 'Missing state_set' if @state_set.nil?
+      raise 'Missing state' if @state_set['state'].nil?
       session[:state_set] = nil
     end
 
     def verify_state
-      raise 'state is invalid' unless params['state'] == @state['state']
+      raise 'state is invalid' unless params['state'] == @state_set['state']
     end
 
-    def initialize_rp_for_create
-      @provider.state = params['state']
-      @provider.state = params['code']
-
-      # TODO: debug
-      puts("state = #{@rp.state}")
-      puts("code = #{@rp.code}")
+    def initialize_rp_on_create
+      @rp.state = params['state']
+      @rp.code = params['code']
     end
 
     def store_access_token
@@ -82,16 +86,21 @@ module Rp
       # This is just a demo.
       session[:access_token_set] = {
         'token' => @rp.access_token,
-        'redirect' => '/rp/facebook/show'
+        'redirect' => rp_facebook_show_url,
+        'provider' => PROVIDER
       }
     end
 
     def load_access_token
       # You should load them from your database.
       # This is just a demo.
-      @token = session[:access_token_set]
-      raise 'Missing access_token_set' if @token.nil?
-      raise 'Missing access_token' if @token['token'].nil?
+      @token_set = session[:access_token_set]
+      raise 'Missing access_token_set' if @token_set.nil?
+      raise 'Missing access_token' if @token_set['token'].nil?
+    end
+
+    def initialize_rp_on_show
+      @rp.access_token = @token_set['token']
     end
   end
 end

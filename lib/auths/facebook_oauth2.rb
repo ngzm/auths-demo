@@ -1,9 +1,8 @@
 module Auths
   # Operator for Facebook Oauth2
   class FacebookOauth2 < Authorize
-    attr_accessor :state, :code
-    attr_reader :access_token, :user_id
-    attr_reader :user_profile
+    attr_accessor :state, :code, :access_token
+    attr_reader :user_id, :user_profile
 
     def authorization_endpoint_uri
       host = fconf['auth_endpoint_host']
