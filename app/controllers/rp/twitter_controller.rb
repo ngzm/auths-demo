@@ -83,7 +83,7 @@ module Rp
         'token'   => @rp.access_token,
         'secret'  => @rp.access_token_secret,
         'user_id' => @rp.user_id,
-        'redirect' => '/rp/twitter/show',
+        'redirect' => rp_twitter_show_url,
         'provider' => PROVIDER
       }
     end

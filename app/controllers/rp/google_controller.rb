@@ -86,7 +86,7 @@ module Rp
       session[:access_token_set] = {
         'token' => @rp.access_token,
         'id_token' => @rp.id_token,
-        'redirect' => '/rp/google/show',
+        'redirect' => rp_google_show_url,
         'provider' => PROVIDER
       }
     end
