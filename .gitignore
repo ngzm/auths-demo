@@ -24,11 +24,15 @@
 
 # Server apps
 /config/rp_config_google_test.yml
+/config/rp_config_google_demo.yml
 /config/rp_config_facebook_test.yml
+/config/rp_config_facebook_demo.yml
 /config/rp_config_twitter_test.yml
+/config/rp_config_twitter_demo.yml
 
 # Production
 /production/app/auths_demo
+/public/assets
 
 # Others
 .DS_Store
