@@ -2,7 +2,7 @@
 
 # Auths-demo app Main controller
 class MainController < ApplicationController
-  skip_before_action :authenticate, only: %i[index login]
+  skip_before_action :authenticate, only: %i[index login privacy]
 
   def index
     @logined = authenticated?
@@ -18,4 +18,6 @@ class MainController < ApplicationController
     session.delete(:access_token_set)
     redirect_to main_index_path
   end
+
+  def privacy; end
 end
