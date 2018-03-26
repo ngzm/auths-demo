@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'main/show'
   get 'main/login'
   get 'main/logout'
+  get 'main/privacy'
 
   namespace :rp do
     get 'twitter/index'
