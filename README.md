@@ -4,7 +4,7 @@ This is a demo program with using OAuth 1.0, OAuth 2.0 and OpenID Connect.
 
 ### Demo site
 
-Here is the demo site -->  [DEMO SITE](https://webgames.link/auths/)
+Here is the demo site -->  [DEMO SITE](https://webgame.link/auths/)
 
 ### Description of major directories
 
