@@ -3,7 +3,7 @@
 module Rp
   # Super class for RP or OAuth Client
   class AppController < ApplicationController
-    rescue_from Auths::Error::AuthError, with: :handle_auth_error
+    rescue_from Auths::Error::AuthError, with: :handle_auths_error
 
     private
 
@@ -16,7 +16,7 @@ module Rp
     end
 
     # Auth Error handler
-    def handle_auth_error(err)
+    def handle_auths_error(err)
       logger.warn("AUTH ERROR: status: #{err.http_status}: #{err.message}")
       @errors = []
       @errors.push(

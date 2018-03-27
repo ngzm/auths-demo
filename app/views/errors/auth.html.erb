@@ -1,0 +1,15 @@
+<main>
+<h1>User login error</h1>
+<hr>
+
+<h3>認証・認可処理でエラーが発生しました</h3>
+<div>
+  <ul>
+    <% @errors.each do |err| %>
+      <li>[<%= err[:level] %>] <%= err[:message] %></li>
+    <% end %>
+  </ul>
+</div>
+<hr />
+<%= link_to 'Main View に戻る', main_index_path %>
+</main>
