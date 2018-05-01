@@ -29,6 +29,7 @@
 /config/rp_config_facebook_demo.yml
 /config/rp_config_twitter_test.yml
 /config/rp_config_twitter_demo.yml
+/rp_set_env.sh
 
 # Production
 /production/app/auths_demo

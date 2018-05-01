@@ -2,23 +2,32 @@ module Auths
   # Laod auth config
   module Config
     def gconf
-      @@gconf ||= YAML.load_file(
-        # File.join(Rails.root, 'config/rp_config_google.yml')
-        File.join(Rails.root, 'config/rp_config_google_demo.yml')
+      @@gconf ||= YAML.safe_load(
+        ERB.new(
+          File.read(
+            File.join(Rails.root, 'config/rp_config_google.yml')
+          )
+        ).result
       )
     end
 
     def fconf
-      @@fconf ||= YAML.load_file(
-        # File.join(Rails.root, 'config/rp_config_facebook.yml')
-        File.join(Rails.root, 'config/rp_config_facebook_demo.yml')
+      @@fconf ||= YAML.safe_load(
+        ERB.new(
+          File.read(
+            File.join(Rails.root, 'config/rp_config_facebook.yml')
+          )
+        ).result
       )
     end
 
     def tconf
-      @@tconf ||= YAML.load_file(
-        # File.join(Rails.root, 'config/rp_config_twitter.yml')
-        File.join(Rails.root, 'config/rp_config_twitter_demo.yml')
+      @@tconf ||= YAML.safe_load(
+        ERB.new(
+          File.read(
+            File.join(Rails.root, 'config/rp_config_twitter.yml')
+          )
+        ).result
       )
     end
   end

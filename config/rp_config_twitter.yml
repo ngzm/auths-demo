@@ -6,6 +6,6 @@ token_endpoint_host:    https://api.twitter.com
 token_endpoint_path:    /oauth/access_token
 user_endpoint_host:     https://api.twitter.com
 user_endpoint_path:     /1.1/users/show.json
-consumer_key:           --your-consumer_key--
-consumer_secret:        --your-consumer_secret--
-callback_url:           http://--your-callback_url--
+consumer_key:           <%= ENV['RP_TW_CONSUMER_KEY'] %>
+consumer_secret:        <%= ENV['RP_TW_CONSUMER_SECRET'] %>
+callback_url:           <%= ENV['RP_TW_CALLBACK_URL'] %>
