@@ -35,6 +35,9 @@
 /production/app/auths-demo
 /public/assets
 
+# Staging
+/STAGING
+
 # Others
 .DS_Store
 .idea
