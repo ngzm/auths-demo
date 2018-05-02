@@ -21,8 +21,8 @@ pidfile "#{my_pid_dir}/authsdemo_puma.pid"
 state_path "#{my_pid_dir}/authsdemo_puma.state"
 
 # bind socket
-my_socket_dir = File.expand_path('../tmp/sockets', __dir__)
-bind "unix:///#{my_socket_dir}/authsdemo_puma.sock"
+# my_socket_dir = File.expand_path('../tmp/sockets', __dir__)
+# bind "unix:///#{my_socket_dir}/authsdemo_puma.sock"
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together

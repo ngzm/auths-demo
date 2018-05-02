@@ -4,6 +4,6 @@ token_endpoint_host:     https://graph.facebook.com
 token_endpoint_path:     /v2.12/oauth/access_token
 token_debug_path:        /debug_token
 userinfo_endpoint_host:  https://graph.facebook.com
-app_id:                  --your-app-id--
-app_secret:              --your-app-secret--
-redirect_uri:            https://--your-redirect-uri--
+app_id:                  <%= ENV['RP_FB_APP_ID'] %>
+app_secret:              <%= ENV['RP_FB_APP_SECRET'] %>
+redirect_uri:            <%= ENV['RP_FB_REDIRECT_URI'] %>
