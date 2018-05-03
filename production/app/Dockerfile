@@ -23,7 +23,7 @@ RUN cd /usr/src/app && bundle install --without test development
 # define production environments
 ENV RAILS_ENV production
 ENV RAILS_SERVE_STATIC_FILES 1
-ENV RAILS_RELATIVE_URL_ROOT='/auths'
+ENV RAILS_RELATIVE_URL_ROOT='/'
 
 # setup glink application
 RUN cd /usr/src/app && rails assets:precompile
